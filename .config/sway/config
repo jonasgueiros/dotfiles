@@ -8,7 +8,7 @@
 ######################################################################
 
 # set background
-output * bg $HOME/.config/backgrounds/001.jpg fill
+output * bg /home/lsh/Pictures/pc.jpg fill
 
 
 # include custom sway config
@@ -16,3 +16,22 @@ include "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf"
 
 # include default sway config
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf")'
+
+input "type:keyboard" {
+    xkb_layout "br"
+    xkb_variant ",abnt2"
+}
+
+# Enable standard window title bars with a 2-pixel border
+default_border normal 2
+default_floating_border normal 2
+
+smart_borders off
+
+# Autotiling daemon for dynamic horizontal/vertical splits
+exec_always ~/.local/bin/autotiling
+
+# Script to send 4th window on a workspace to a new workspace
+exec_always python3 /home/lsh/.local/bin/sway-limit-workspace.py
+
+exec_always python3 /home/lsh/.local/bin/sway-focus-titlebar.py

@@ -7,12 +7,24 @@
 #                            /_/
 #
 #
+
+# --- Console output goes BEFORE instant prompt initialization ---
+echo -e "\e[1;32mWelcome back, lsh!\e[0m"
+# fastfetch
+
+# 1. Quiet the instant prompt warning FIRST
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.tmuxifier/bin:$PATH"
+
 
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -358,12 +370,19 @@ source ~/.config/zsh/zsh-syntax-highlightin-tokyonight.zsh
 #######################################################
 
 # Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
+if command -v fzf &>/dev/null; then
+  source <(fzf --zsh)
+  # Explicitly bind Ctrl+R to fzf history search
+  bindkey '^R' fzf-history-widget
+fi
 
-Zoxide config for zsh plugins 
+unalias zi 2>/dev/null
+
 eval "$(zoxide init --cmd cd zsh)"
 
 
-Tmuxifier config for zsh plugins  
 eval "$(tmuxifier init -)"
 
+alias -g C='clear'
+alias -g SYSUP='sudo dnf upgrade --refresh'
+alias zi="zoxide query -i"
