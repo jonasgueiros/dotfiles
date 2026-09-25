@@ -386,3 +386,9 @@ eval "$(tmuxifier init -)"
 alias -g C='clear'
 alias -g SYSUP='sudo dnf upgrade --refresh'
 alias zi="zoxide query -i"
+
+# Custom Foot Startup Message
+echo -e "\e[1;35m Welcome to Fedora Sway Spin!\e[0m"
+echo -e "\e[0;33m User: \e[1;32m$USER \e[0;33m| Host: \e[1;32m$HOST\e[0m"
+echo -e "\e[0;36m System Uptime:\e[0m $(uptime -p | sed 's/up //')"
+echo ""
