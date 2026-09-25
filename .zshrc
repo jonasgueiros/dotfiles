@@ -8,16 +8,10 @@
 #
 #
 
-# --- Console output goes BEFORE instant prompt initialization ---
-echo -e "\e[1;32mWelcome back, lsh!\e[0m"
-# fastfetch
-
-# 1. Quiet the instant prompt warning FIRST
+# Set instant prompt mode to quiet
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
+# Enable Powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
