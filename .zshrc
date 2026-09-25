@@ -9,7 +9,7 @@
 #
 
 # Set instant prompt mode to quiet
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
 # Enable Powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -126,6 +126,7 @@ bindkey -v
 # bindkey ' ' magic-space                           # do history expansion on space
 bindkey "^[[A" history-beginning-search-backward  # search history with up key
 bindkey "^[[B" history-beginning-search-forward   # search history with down key
+
 
 #######################################################
 # History Configuration
@@ -383,3 +384,8 @@ alias zi="zoxide query -i"
 
 # Custom Foot Startup Message
 
+# Write to stderr (fd 2) so Instant Prompt doesn't catch it
+echo -e "\e[1;35m Welcome to Fedora Sway Spin!\e[0m" >&2
+echo -e "\e[0;33m User: \e[1;32m$USER \e[0;33m| Host: \e[1;32m$HOST\e[0m" >&2
+echo -e "\e[0;36m System Uptime:\e[0m $(uptime -p | sed 's/up //')" >&2
+echo "" >&2
