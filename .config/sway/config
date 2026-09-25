@@ -7,9 +7,14 @@
 #                                /_/                                 #
 ######################################################################
 
+# Define Mod Key (Mod4 = Super / Windows Key)
+set $mod Mod4
+
+# Define Menu Application
+set $menu rofi -show drun -auto-select
+
 # set background
 output * bg /home/lsh/Pictures/pc.jpg fill
-
 
 # include custom sway config
 include "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf"
