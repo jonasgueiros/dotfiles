@@ -40,3 +40,7 @@ exec_always ~/.local/bin/autotiling
 exec_always python3 /home/lsh/.local/bin/sway-limit-workspace.py
 
 exec_always python3 /home/lsh/.local/bin/sway-focus-titlebar.py
+
+
+# Autostart Waybar on Sway startup
+
